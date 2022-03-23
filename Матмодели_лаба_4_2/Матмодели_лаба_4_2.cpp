@@ -34,8 +34,8 @@ void main()
 		while (pk > eps) {
 			m++;
 			k = n + m;
-			sum += pow(n, n) / factorial(n) * pow(trez, n + 1) * (1 - pow(trez, m)) / (1 - trez);
-			PO = 1 / sum;
+			double pup = pow(n, n) / factorial(n) * pow(trez, n + 1) * (1 - pow(trez, m)) / (1 - trez);
+			PO = 1 / (sum + pup);
 			alif = pow(n, n) / factorial(n) * pow(trez,k);
 			pk = alif * PO;
 		}
