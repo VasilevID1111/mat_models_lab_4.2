@@ -18,7 +18,7 @@ void main()
 	int k;
 	double po = 2.6, trez = 0, pk = 1, eps = 0.08, alif = 0, PO, sum;
 	for (n; n < 10; n++) {
-		m = 0;
+		m = -1;
 		pk = 1;
 		sum = 0;
 		trez = po / n;
