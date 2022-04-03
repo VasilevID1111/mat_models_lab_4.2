@@ -6,40 +6,48 @@
 using namespace std;
 
 
-int factorial(int n)
+long long factorial(long long n)
 {
-	return (n == 1 || n == 0) ? 1 : factorial(n - 1) * n;
+	long long f = 1;
+	for (long long i = 2; i <= n; i++)
+		f *= i;
+	return f;
 }
 
 void main()
 {
-	int n = 2;
-	int m = 0;
-	int k;
-	double po = 2.6, trez = 0, pk = 1, eps = 0.08, alif = 0, PO, sum;
-	for (n; n < 10; n++) {
-		m = 0;
+	long long n = 2;
+	long long m = -1;
+	long long k;
+	double trez = 0, pk = 1, alif = 0, PO, sum, pup;
+	double po = 2.6, eps = 0.08;
+	//double po = 1.4, trez = 0, pk = 1, eps = 0.03, alif = 0, PO, sum;
+	for (n; n < 5; n++) {
+		m = -1;
 		pk = 1;
-		sum = 0;
+		sum = 1;
 		trez = po / n;
-		for (int i = 0; i <= n; i++) {
-			double a, b, c;
-			a = pow(n, i);
-			b = factorial(i);
-			c = pow(trez, i);
-			sum += (a / b * c);
+		double a = 1;
+		for (int i = 1; i <= n; i++) {
+			a = a * n / i * trez;
+			sum += a;
 		}
 
-		
-		while (pk > eps) {
+		double pks = 2;
+		pup = pow(n, n) / factorial(n) * pow(trez, n + 1) / (1 - trez);
+		double alif = pow(n, n) / factorial(n) * pow(trez, n-1);
+		while (pk > eps && (abs(pk - pks) > 0.0000001)) {
+			pks = pk;
 			m++;
-			k = n + m;
-			double pup = pow(n, n) / factorial(n) * pow(trez, n + 1) * (1 - pow(trez, m)) / (1 - trez);
-			PO = 1 / (sum + pup);
-			alif = pow(n, n) / factorial(n) * pow(trez,k);
+			PO = 1 / (sum + pup * (1 - pow(trez, m)));
+			alif *= trez;
 			pk = alif * PO;
 		}
-		cout << "n=" << n << " m=" << m << endl;
+		//cout << "||pk=" << pk << " PO =" << PO << endl;
+		if (abs(pk - pks) > 0.0000001) {
+			cout << "n=" << n << " m=" << m << endl;
+		} else
+			cout << "n=" << n << " m=inf" << endl;
 	}
 
 }
